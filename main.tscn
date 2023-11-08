@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://bga0d1gll0kha"]
+
+[ext_resource type="PackedScene" uid="uid://01786hwxo8ml" path="res://sub_viewport.tscn" id="1_4n6mm"]
+[ext_resource type="Texture2D" uid="uid://ivuv7ctijuxr" path="res://icon.svg" id="1_a3dmf"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bl14d"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_rmywr"]
+sky_material = SubResource("ProceduralSkyMaterial_bl14d")
+
+[sub_resource type="Environment" id="Environment_v0mow"]
+background_mode = 2
+sky = SubResource("Sky_rmywr")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_whwsb"]
+viewport_path = NodePath("WorkingReference/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_lcjnb"]
+viewport_path = NodePath("BrakingReference/SubViewport")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_v0mow")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.84939)
+current = true
+
+[node name="WorkingReference" type="Node3D" parent="."]
+
+[node name="Sprite3D" type="Sprite3D" parent="WorkingReference"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2686, -0.857318, 0)
+texture = SubResource("ViewportTexture_whwsb")
+
+[node name="SubViewport" type="SubViewport" parent="WorkingReference"]
+
+[node name="Sprite2D" type="Sprite2D" parent="WorkingReference/SubViewport"]
+texture = ExtResource("1_a3dmf")
+
+[node name="Camera2D" type="Camera2D" parent="WorkingReference/SubViewport/Sprite2D"]
+
+[node name="BrakingReference" type="Node3D" parent="."]
+
+[node name="Sprite3D" type="Sprite3D" parent="BrakingReference"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.39679, -0.873357, 0)
+texture = SubResource("ViewportTexture_lcjnb")
+
+[node name="SubViewport" parent="BrakingReference" instance=ExtResource("1_4n6mm")]

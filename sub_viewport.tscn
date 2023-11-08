@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://01786hwxo8ml"]
+
+[ext_resource type="Texture2D" uid="uid://ivuv7ctijuxr" path="res://icon.svg" id="1_odw2p"]
+
+[node name="SubViewport" type="SubViewport"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_odw2p")
+
+[node name="Camera2D" type="Camera2D" parent="Sprite2D"]
