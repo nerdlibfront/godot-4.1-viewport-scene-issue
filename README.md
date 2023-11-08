@@ -1,6 +1,6 @@
-# Viewport Render Texture loosing node_path reference
+# Viewport Texture loosing node_path reference if SubViewport is SubScene root
 
-When a viewport render texture is referencing a SubViewport that is the root of its own Subscene, the reference is lost when the editor is closed and reopened.
+When a viewport texture is referencing a SubViewport that is the root of its own Subscene, the reference is lost when the editor is closed and reopened.
 
 ## Reproduction
 
